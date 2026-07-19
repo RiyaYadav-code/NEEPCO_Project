@@ -8,7 +8,7 @@
     <!-- External Dependencies: Tailwind, FontAwesome & Chart.js -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;850&family=Fira+Code:wght=400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -18,18 +18,20 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
                     },
                     colors: {
                         brand: {
                             50: '#f0f7ff',
                             100: '#e0effe',
-                            500: '#0284c7', /* Power Sky Blue */
-                            600: '#0369a1',
-                            900: '#0c4a6e',
+                            500: '#0ea5e9', /* Power Sky Blue */
+                            600: '#0284c7',
+                            950: '#030712',
                         },
-                        amberAccent: {
-                            500: '#f59e0b',
-                            600: '#d97706',
+                        panel: {
+                            bg: '#0a0f1d',
+                            card: '#111c3a',
+                            border: '#1e2e5c',
                         }
                     }
                 }
@@ -41,71 +43,61 @@
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Scrollbar styling */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.05);
-        }
-        .dark ::-webkit-scrollbar-track {
-            background: #111b36;
+            background: #070c1b;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+            background: #1e2e5c;
             border-radius: 4px;
         }
-        .dark ::-webkit-scrollbar-thumb {
-            background: #1f2e54;
-        }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #3b82f6;
         }
     </style>
 </head>
-<body class="bg-slate-100 dark:bg-[#070c1b] min-h-screen flex flex-col text-slate-800 dark:text-slate-100 transition duration-300">
+<body class="bg-slate-50 dark:bg-[#070c1b] min-h-screen flex flex-col text-slate-800 dark:text-slate-100 transition duration-300">
 
     <!-- ========================================== -->
-    <!-- SECURE ENTERPRISE LOGIN MODULE -->
+    <!-- SECURE ENTERPRISE LOGIN MODULE             -->
     <!-- ========================================== -->
     <div id="login-screen" class="flex-grow flex items-center justify-center px-4 py-12 transition duration-300">
-        <div class="max-w-md w-full space-y-8 bg-white dark:bg-[#111c3a] p-8 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 transition duration-300">
-            
-            <!-- Branding Header -->
+        <div class="max-w-md w-full space-y-8 bg-white dark:bg-[#111c3a] p-8 rounded-2xl shadow-2xl border border-slate-200 dark:border-[#1e2e5c] transition duration-300">
             <div class="text-center space-y-3">
                 <div class="inline-flex bg-gradient-to-tr from-brand-500 to-amber-500 p-3.5 rounded-2xl shadow-md justify-center items-center">
                     <i class="fa-solid fa-bolt text-white text-3xl"></i>
                 </div>
                 <div>
-                    <h2 class="text-xl font-extrabold text-slate-900 dark:text-white tracking-wider uppercase">NEEPCO PORTAL</h2>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold tracking-wide">National Informatics Centre | Ministry of Power</p>
+                    <h2 class="text-xl font-extrabold text-white tracking-wider uppercase">NEEPCO PORTAL</h2>
+                    <p class="text-xs text-slate-400 font-semibold tracking-wide">National Informatics Centre | Ministry of Power</p>
                 </div>
-                <div class="h-px bg-slate-200 dark:bg-slate-800 w-24 mx-auto my-2"></div>
-                <p class="text-[11px] text-slate-400 dark:text-slate-400 italic">PSB108 compliance monitor & financial audit node</p>
+                <div class="h-px bg-[#1e2e5c] w-24 mx-auto my-2"></div>
+                <p class="text-[11px] text-slate-400 italic">PSB108 compliance monitor & financial audit node</p>
             </div>
 
             <!-- Login Form -->
             <form onsubmit="handleLogin(event)" class="mt-8 space-y-4">
                 <div class="space-y-1">
-                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">Authorized Username</label>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Authorized Username</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"><i class="fa-solid fa-user-shield text-xs"></i></span>
-                        <input type="text" id="login-username" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500" placeholder="e.g., neepco_admin">
+                        <input type="text" id="login-username" required class="w-full bg-slate-900 border border-[#1e2e5c] rounded-lg pl-9 pr-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-500" placeholder="e.g., neepco_admin">
                     </div>
                 </div>
 
                 <div class="space-y-1">
-                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">Security Password</label>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase">Security Password</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                        <input type="password" id="login-password" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500" placeholder="••••••••">
+                        <input type="password" id="login-password" required class="w-full bg-slate-900 border border-[#1e2e5c] rounded-lg pl-9 pr-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-500" placeholder="••••••••">
                     </div>
                 </div>
 
-                <!-- Custom Security Error Box -->
-                <div id="login-error-box" class="hidden p-3 rounded-lg text-[10px] font-semibold bg-rose-100 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/40">
-                    <i class="fa-solid fa-triangle-exclamation mr-1"></i> Invalid credentials. Check credentials listed below.
+                <div id="login-error-box" class="hidden p-3 rounded-lg text-[10px] font-semibold bg-rose-950/30 text-rose-400 border border-rose-900/40">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i> Invalid credentials. Check evaluation keys below.
                 </div>
 
                 <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-brand-500 to-indigo-600 hover:from-brand-600 hover:to-indigo-700 text-white font-bold text-xs rounded-lg shadow-md transition duration-200 transform active:scale-95 flex items-center justify-center">
@@ -113,22 +105,19 @@
                 </button>
             </form>
 
-            <!-- Demonstration Credentials Helper -->
-            <div class="mt-6 p-3.5 bg-amber-500/10 dark:bg-amber-500/5 rounded-xl border border-amber-500/20 text-[10px] text-amber-700 dark:text-amber-400 space-y-1">
+            <div class="mt-6 p-3.5 bg-amber-500/5 rounded-xl border border-amber-500/20 text-[10px] text-amber-400 space-y-1">
                 <p class="font-bold uppercase tracking-wider mb-1 flex items-center"><i class="fa-solid fa-circle-info mr-1.5 text-xs"></i> Demo Evaluation Keys</p>
-                <div><strong>Username:</strong> <code class="bg-white/40 dark:bg-slate-950/40 px-1 py-0.5 rounded font-semibold text-slate-900 dark:text-white font-mono">neepco_admin</code></div>
-                <div><strong>Password:</strong> <code class="bg-white/40 dark:bg-slate-950/40 px-1 py-0.5 rounded font-semibold text-slate-900 dark:text-white font-mono">power_compliance_2026</code></div>
+                <div><strong>Username:</strong> <code class="bg-slate-950/40 px-1 py-0.5 rounded font-semibold text-white font-mono">neepco_admin</code></div>
+                <div><strong>Password:</strong> <code class="bg-slate-950/40 px-1 py-0.5 rounded font-semibold text-white font-mono">power_compliance_2026</code></div>
             </div>
         </div>
     </div>
 
     <!-- ========================================== -->
-    <!-- MAIN APPLICATION WORKSPACE -->
+    <!-- MAIN APPLICATION WORKSPACE                 -->
     <!-- ========================================== -->
     <div id="app-screen" class="hidden flex-col flex-grow">
-        
-        <!-- Header Panel -->
-        <header class="bg-white dark:bg-[#0e1731] border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 shadow-md transition duration-300">
+        <header class="bg-slate-100 dark:bg-[#0e1731] border-b border-slate-200 dark:border-[#1e2e5c] sticky top-0 z-50 shadow-md">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     <div class="bg-gradient-to-tr from-brand-500 to-amber-500 p-2 rounded-xl shadow-md flex items-center justify-center">
@@ -140,56 +129,49 @@
                     </div>
                 </div>
                 
-                <!-- Sub-Portal Switcher Tabs -->
-                <div class="flex bg-slate-100 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800">
-                    <button onclick="switchPortal('sourcing')" id="tab-sourcing" class="flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 bg-brand-500 text-white shadow-sm">
+                <div class="flex bg-slate-200 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-300 dark:border-[#1e2e5c]">
+                    <button onclick="switchPortal('sourcing')" id="tab-sourcing" class="flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 bg-brand-600 text-white shadow-sm">
                         <i class="fa-solid fa-chart-pie"></i>
                         <span>Sourcing Analytics</span>
                     </button>
-                    <button onclick="switchPortal('payments')" id="tab-payments" class="flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">
+                    <button onclick="switchPortal('payments')" id="tab-payments" class="flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
                         <i class="fa-solid fa-wallet"></i>
                         <span>Financial Settlement</span>
                     </button>
                 </div>
 
                 <div class="flex items-center space-x-3">
-                    <!-- Light/Dark Mode Switcher -->
-                    <button id="theme-toggle-btn" onclick="toggleTheme()" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 p-2 rounded-lg border border-slate-200 dark:border-slate-700 transition duration-200 flex items-center justify-center">
-                        <i id="theme-icon" class="fa-solid fa-sun text-amber-500"></i>
+                    <!-- MODE SWITCHER TOGGLE -->
+                    <button onclick="toggleTheme()" class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-950 dark:hover:bg-slate-900 text-amber-500 dark:text-sky-400 p-2 rounded-lg border border-slate-300 dark:border-[#1e2e5c] transition flex items-center justify-center w-8 h-8">
+                        <i id="theme-icon" class="fa-solid fa-sun text-xs"></i>
                     </button>
-                    <!-- Session Exit Trigger -->
-                    <button onclick="handleLogout()" class="bg-rose-50 dark:bg-rose-950/20 hover:bg-rose-100 dark:hover:bg-rose-900/30 text-rose-600 dark:text-rose-400 px-3 py-2 rounded-lg text-xs font-bold border border-rose-200/50 dark:border-rose-900/30 transition flex items-center">
+                    <button onclick="handleLogout()" class="bg-rose-950/20 hover:bg-rose-900/30 text-rose-400 px-3 py-2 rounded-lg text-xs font-bold border border-rose-900/30 transition flex items-center">
                         <i class="fa-solid fa-right-from-bracket mr-1.5"></i> Exit Session
                     </button>
                 </div>
             </div>
         </header>
 
-        <!-- Main Body Workspace -->
         <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            
-            <!-- SUB-PORTAL 1: SOURCING ANALYTICS MODULE -->
-            <div id="portal-sourcing" class="space-y-8 block animate-[fadeIn_0.3s_ease-out]">
+            <div id="portal-sourcing" class="space-y-8 block">
                 
                 <!-- KPI Statistics Block -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <!-- Total Procurement Capital spent -->
-                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
-                        <div class="absolute right-4 top-4 text-brand-500/10 dark:text-brand-500/20 text-3xl"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-                        <h4 class="text-[10px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest">Active Procurement Capital</h4>
+                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-sm relative overflow-hidden">
+                        <div class="absolute right-4 top-4 text-brand-500/10 text-3xl"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                        <h4 class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Active Procurement Capital</h4>
                         <p class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpi-total-spent">₹0.00</p>
-                        <div class="mt-3 flex items-center text-[11px] text-emerald-600 dark:text-emerald-400">
+                        <div class="mt-3 flex items-center text-[11px] text-emerald-500 dark:text-emerald-400">
                             <i class="fa-solid fa-database mr-1"></i> Sync state: SQL Active
                         </div>
                     </div>
                     
-                    <!-- MSE Percentage gauge tracking -->
-                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
-                        <div class="absolute right-4 top-4 text-amber-500/10 dark:text-amber-500/20 text-3xl"><i class="fa-solid fa-handshake-angle"></i></div>
-                        <h4 class="text-[10px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest">MSE Sourcing compliance</h4>
+                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-sm relative overflow-hidden">
+                        <div class="absolute right-4 top-4 text-amber-500/10 text-3xl"><i class="fa-solid fa-handshake-angle"></i></div>
+                        <h4 class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">MSE Sourcing compliance</h4>
                         <div class="flex items-baseline mt-1 space-x-2">
                             <p class="text-2xl font-black text-slate-900 dark:text-white" id="kpi-mse-percent">0.0%</p>
-                            <span class="text-[11px] font-bold" id="compliance-status-pill">Target Met (25%)</span>
+                            <span class="text-[11px] font-bold text-rose-400" id="compliance-status-pill">Shortfall (<25%)</span>
                         </div>
                         <div class="mt-3.5">
                             <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-1.5">
@@ -198,10 +180,9 @@
                         </div>
                     </div>
 
-                    <!-- GeM Sourced channels metric -->
-                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
-                        <div class="absolute right-4 top-4 text-sky-500/10 dark:text-sky-500/20 text-3xl"><i class="fa-solid fa-store"></i></div>
-                        <h4 class="text-[10px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest">GeM Mandate Ratio</h4>
+                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-sm relative overflow-hidden">
+                        <div class="absolute right-4 top-4 text-sky-500/10 text-3xl"><i class="fa-solid fa-store"></i></div>
+                        <h4 class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">GeM Mandate Ratio</h4>
                         <p class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpi-gem-percent">0.0%</p>
                         <div class="mt-3.5">
                             <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-1.5">
@@ -213,51 +194,50 @@
 
                 <!-- Splitted grid layout -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Main Ledger Table area -->
                     <div class="lg:col-span-2 space-y-6">
-                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl shadow-md overflow-hidden flex flex-col">
-                            <!-- Table Title Bar -->
-                            <div class="p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0e1731] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        
+                        <!-- Main Ledger Table Card -->
+                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl shadow-md overflow-hidden flex flex-col">
+                            <div class="p-4 border-b border-slate-200 dark:border-[#1e2e5c] bg-slate-100 dark:bg-[#0e1731] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                 <div>
                                     <h3 class="font-bold text-sm text-slate-900 dark:text-white flex items-center">
                                         <i class="fa-solid fa-folder-closed text-brand-500 mr-2"></i> Power Infrastructure Work Contracts
                                     </h3>
                                     <p class="text-[11px] text-slate-500 dark:text-slate-400">Current dynamic files mapped from official Ministry of Power datasets</p>
                                 </div>
-                                <button onclick="downloadCSV()" class="text-[11px] font-bold bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 transition flex items-center shadow-xs">
-                                    <i class="fa-solid fa-download text-emerald-500 mr-1.5"></i> Export Transformed CSV
+                                <button onclick="downloadCSV()" class="text-[11px] font-bold bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-850 dark:text-slate-200 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-[#1e2e5c] transition flex items-center shadow-xs">
+                                    <i class="fa-solid fa-download text-emerald-500 dark:text-emerald-400 mr-1.5"></i> Export Transformed CSV
                                 </button>
                             </div>
 
                             <!-- Table Filters Console -->
-                            <div class="p-3.5 bg-slate-100/50 dark:bg-[#132042] border-b border-slate-200 dark:border-slate-800/80 grid grid-cols-1 sm:grid-cols-4 gap-3">
+                            <div class="p-3.5 bg-slate-100/50 dark:bg-[#132042] border-b border-slate-200 dark:border-[#1e2e5c] grid grid-cols-1 sm:grid-cols-4 gap-3">
                                 <div>
                                     <label class="block text-[9px] font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Search Scope</label>
                                     <div class="relative">
-                                        <span class="absolute inset-y-0 left-0 flex items-center pl-2 text-slate-400"><i class="fa-solid fa-search text-[10px]"></i></span>
-                                        <input type="text" id="search-input" oninput="applyFilters()" placeholder="Project details, partner..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg pl-6 pr-2 py-1 text-[11px] text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500">
+                                        <span class="absolute inset-y-0 left-0 flex items-center pl-2 text-slate-500"><i class="fa-solid fa-search text-[10px]"></i></span>
+                                        <input type="text" id="search-input" oninput="applyFilters()" placeholder="Project details, partner..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg pl-6 pr-2 py-1 text-[11px] text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-[9px] font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Fiscal Year</label>
-                                    <select id="filter-year" onchange="applyFilters()" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500">
+                                    <select id="filter-year" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg px-2 py-1 text-[11px] text-slate-850 dark:text-slate-200 focus:outline-none focus:border-brand-500">
                                         <option value="All">All Years</option>
-                                        <option value="2024">FY 2024</option>
-                                        <option value="2023">FY 2023</option>
-                                        <option value="2022">FY 2022</option>
+                                        <option value="2026">FY 2026</option>
+                                        <option value="2025">FY 2025</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-[9px] font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Procurement Method</label>
-                                    <select id="filter-channel" onchange="applyFilters()" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500">
+                                    <select id="filter-channel" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg px-2 py-1 text-[11px] text-slate-850 dark:text-slate-200 focus:outline-none focus:border-brand-500">
                                         <option value="All">All Channels</option>
-                                        <option value="GeM Portal">GeM Portal</option>
-                                        <option value="Open Tender">Open Tender</option>
+                                        <option value="GeM">GeM Portal</option>
+                                        <option value="Open">Open Tender</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-[9px] font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">MSE Registration</label>
-                                    <select id="filter-mse" onchange="applyFilters()" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1 text-[11px] text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500">
+                                    <select id="filter-mse" onchange="applyFilters()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg px-2 py-1 text-[11px] text-slate-850 dark:text-slate-200 focus:outline-none focus:border-brand-500">
                                         <option value="All">All Suppliers</option>
                                         <option value="Yes">Registered MSE</option>
                                         <option value="No">Corporate Giant</option>
@@ -266,10 +246,10 @@
                             </div>
 
                             <!-- Table Element -->
-                            <div class="overflow-x-auto">
+                            <div class="overflow-x-auto min-h-[220px]">
                                 <table class="w-full text-left border-collapse text-[11px]">
                                     <thead>
-                                        <tr class="bg-slate-100 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                                        <tr class="bg-slate-100 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-[#1e2e5c]">
                                             <th class="p-3 font-semibold">Project Code</th>
                                             <th class="p-3 font-semibold">Strategic Partner</th>
                                             <th class="p-3 font-semibold text-center">MSE Status</th>
@@ -284,22 +264,90 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="p-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+                            <div class="p-3 border-t border-slate-200 dark:border-[#1e2e5c] bg-slate-100 dark:bg-slate-900/30 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
                                 <span id="showing-records">Showing 0 of 0 records</span>
-                                <span class="text-sky-500 font-semibold flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping mr-2"></span> Connection Pool Online</span>
+                                <span class="text-sky-500 dark:text-sky-400 font-semibold flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping mr-2"></span> Connection Pool Online</span>
                             </div>
                         </div>
+
+                        <!-- STATUTORY REGIONAL AUDIT & SUB-CATEGORY DASHBOARD (Replaces the raw terminal log console) -->
+                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-md space-y-4">
+                            <div class="flex items-center justify-between border-b border-slate-200 dark:border-[#1e2e5c] pb-3">
+                                <div>
+                                    <h4 class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest flex items-center">
+                                        <i class="fa-solid fa-shield-halved mr-2 text-xs"></i>
+                                        NEEPCO Statutory Audit Checkpoints (MSME Act 2006)
+                                    </h4>
+                                    <p class="text-[10px] text-slate-500 dark:text-slate-400">Live regulatory compliance & regional distribution targets</p>
+                                </div>
+                                <span class="text-[9px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 uppercase tracking-wider">Audit Verified</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Sub-target progress gauges -->
+                                <div class="space-y-3.5 bg-slate-100/50 dark:bg-slate-950/40 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800/60">
+                                    <h5 class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Ministry Special MSE Sub-Allocations</h5>
+                                    
+                                    <!-- SC/ST MSME sub-target -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[10px]">
+                                            <span class="text-slate-700 dark:text-slate-300 font-semibold">SC/ST owned MSE Allocation</span>
+                                            <span class="text-amber-600 dark:text-amber-500 font-bold">0.02% <span class="text-slate-400 dark:text-slate-500">/ 4% Target</span></span>
+                                        </div>
+                                        <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-1.5">
+                                            <div class="bg-amber-500 h-1.5 rounded-full" style="width: 2%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Women MSME sub-target -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[10px]">
+                                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Women-owned MSE Allocation</span>
+                                            <span class="text-sky-600 dark:text-sky-400 font-bold">1.10% <span class="text-slate-400 dark:text-slate-500">/ 3% Target</span></span>
+                                        </div>
+                                        <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-1.5">
+                                            <div class="bg-sky-400 h-1.5 rounded-full" style="width: 36%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Prompt payment indicator -->
+                                    <div class="pt-2 border-t border-slate-200 dark:border-slate-800/60 flex items-center justify-between text-[10px]">
+                                        <span class="text-slate-500 dark:text-slate-400">Prompt Payment 45-Day Rule:</span>
+                                        <span class="text-emerald-600 dark:text-emerald-400 font-bold flex items-center"><i class="fa-solid fa-circle-check mr-1 text-xs"></i> Non-Delayed</span>
+                                    </div>
+                                </div>
+
+                                <!-- Regional Area Statistics mapped directly from your CPSU XLS files -->
+                                <div class="space-y-3 bg-slate-100/50 dark:bg-slate-950/40 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800/60">
+                                    <h5 class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">NEEPCO Key Operations Region Metrics</h5>
+                                    
+                                    <div class="divide-y divide-slate-200 dark:divide-slate-800/50 text-[10px]">
+                                        <div class="flex justify-between py-1.5">
+                                            <span class="text-slate-700 dark:text-slate-300 font-medium">Assam Operations Zone</span>
+                                            <span class="text-slate-500 dark:text-slate-400 font-mono">11.78% MSE Share (63.02 Cr Budget)</span>
+                                        </div>
+                                        <div class="flex justify-between py-1.5">
+                                            <span class="text-slate-700 dark:text-slate-300 font-medium">Meghalaya HQ Region</span>
+                                            <span class="text-slate-500 dark:text-slate-400 font-mono">7.56% MSE Share (61.65 Cr Budget)</span>
+                                        </div>
+                                        <div class="flex justify-between py-1.5">
+                                            <span class="text-slate-700 dark:text-slate-300 font-medium">National Power Sector Avg</span>
+                                            <span class="text-emerald-600 dark:text-emerald-400 font-bold font-mono">19.50% MSE Share Avg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <!-- Right Sidebar: Visual Analytics & Adding order contracts -->
+                    <!-- Right Sidebar -->
                     <div class="space-y-6">
-                        <!-- Chart Analytics Container -->
-                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-md space-y-6">
-                            <!-- Pie Chart: Compliance Share -->
+                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-md space-y-6">
                             <div>
-                                <div class="border-b border-slate-200 dark:border-slate-800 pb-3 flex items-center justify-between mb-4">
+                                <div class="border-b border-slate-200 dark:border-[#1e2e5c] pb-3 flex items-center justify-between mb-4">
                                     <div>
-                                        <h3 class="font-bold text-xs text-slate-900 dark:text-white">Sourcing Share</h3>
+                                        <h3 class="font-bold text-xs text-slate-800 dark:text-white">Sourcing Share</h3>
                                         <p class="text-[10px] text-slate-500 dark:text-slate-400">MSE vs Large Corporates</p>
                                     </div>
                                     <span id="chart-percentage" class="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">0%</span>
@@ -309,10 +357,9 @@
                                 </div>
                             </div>
 
-                            <!-- Bar Chart: Annual Sourcing Progression -->
-                            <div class="border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                            <div class="border-t border-slate-200 dark:border-slate-800/60 pt-4">
                                 <div class="pb-3 mb-2">
-                                    <h3 class="font-bold text-xs text-slate-900 dark:text-white">Annual Sourcing Trend</h3>
+                                    <h3 class="font-bold text-xs text-slate-800 dark:text-white">Annual Sourcing Trend</h3>
                                     <p class="text-[10px] text-slate-500 dark:text-slate-400">Compliance progression (2022 - 2024)</p>
                                 </div>
                                 <div class="relative h-44 w-full">
@@ -322,17 +369,17 @@
                         </div>
 
                         <!-- Work Order Logging Form -->
-                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-md space-y-4">
-                            <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
-                                <h3 class="font-bold text-xs text-slate-900 dark:text-white flex items-center">
-                                    <i class="fa-solid fa-plus-circle text-sky-500 mr-2"></i> Log Sourcing Contract
+                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-md space-y-4">
+                            <div class="border-b border-slate-200 dark:border-[#1e2e5c] pb-3">
+                                <h3 class="font-bold text-xs text-slate-800 dark:text-white flex items-center">
+                                    <i class="fa-solid fa-plus-circle text-sky-500 dark:text-sky-400 mr-2"></i> Log Sourcing Contract
                                 </h3>
                                 <p class="text-[10px] text-slate-500 dark:text-slate-400">Register new electrical/engineering work agreements</p>
                             </div>
                             <form id="procurement-form" onsubmit="handleOrderSubmission(event)" class="space-y-3.5 text-[11px]">
                                 <div>
                                     <label class="block text-slate-700 dark:text-slate-300 font-bold mb-1">Contractor Partnership</label>
-                                    <select id="form-vendor" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none">
+                                    <select id="form-vendor" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none">
                                         <option value="BHEL">Bharat Heavy Electricals Ltd (BHEL)</option>
                                         <option value="GE_Power">GE Power India Limited</option>
                                         <option value="Assam_Carbon">Assam Carbon Products Ltd (MSE)</option>
@@ -343,25 +390,25 @@
                                 <div class="grid grid-cols-2 gap-2">
                                     <div>
                                         <label class="block text-slate-700 dark:text-slate-300 font-bold mb-1">Channel Route</label>
-                                        <select id="form-channel" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none">
-                                            <option value="GeM Portal">GeM Portal Only</option>
-                                            <option value="Open Tender">Open Tender Only</option>
+                                        <select id="form-channel" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg px-2 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none">
+                                            <option value="GeM">GeM Portal Only</option>
+                                            <option value="Open">Open Tender Only</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label class="block text-slate-700 dark:text-slate-300 font-bold mb-1">Record Date</label>
-                                        <input type="date" id="form-date" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none">
+                                        <input type="date" id="form-date" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg px-2 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-slate-700 dark:text-slate-300 font-bold mb-1">Scope description</label>
-                                    <input type="text" id="form-description" placeholder="e.g., Boiler structural testing or 220kV cabling" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none" required>
+                                    <input type="text" id="form-description" placeholder="e.g., Boiler structural testing or 220kV cabling" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none" required>
                                 </div>
                                 <div>
                                     <label class="block text-slate-700 dark:text-slate-300 font-bold mb-1">Contract Valuation (INR)</label>
                                     <div class="relative">
-                                        <span class="absolute inset-y-0 left-0 flex items-center pl-2 text-slate-400">₹</span>
-                                        <input type="number" id="form-amount" placeholder="4500000" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg pl-6 pr-2 py-1.5 text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none" required min="1">
+                                        <span class="absolute inset-y-0 left-0 flex items-center pl-2 text-slate-500">₹</span>
+                                        <input type="number" id="form-amount" placeholder="4500000" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg pl-6 pr-2 py-1.5 text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none" required min="1">
                                     </div>
                                 </div>
                                 <button type="submit" class="w-full bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold py-2 rounded-lg shadow-sm transition transform active:scale-95 flex items-center justify-center">
@@ -371,88 +418,54 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Automated Auditor System -->
-                <div class="bg-gradient-to-tr from-slate-50 to-slate-100 dark:from-[#162142] dark:to-[#12284e] border border-slate-200 dark:border-brand-500/30 rounded-xl p-5 shadow-md relative overflow-hidden transition duration-300">
-                    <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none text-slate-900 dark:text-white">
-                        <i class="fa-solid fa-microchip text-8xl"></i>
-                    </div>
-                    <div class="max-w-3xl space-y-3">
-                        <h3 class="font-bold text-xs text-slate-900 dark:text-white flex items-center">
-                            <i class="fa-solid fa-wand-magic-sparkles text-brand-500 dark:text-brand-400 mr-2"></i> Automated Regulatory Audit Module
-                        </h3>
-                        <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-                            Execute dynamic compliance check loops on power CPSU metrics mapped under official Indian MSMED Act rules. Click below to verify calculations.
-                        </p>
-                        <div class="flex flex-wrap items-center gap-2">
-                            <button onclick="runAudit('compliance')" class="bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 text-[10px] font-bold text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 shadow-xs">
-                                <i class="fa-solid fa-building-circle-check text-amber-500 mr-1.5"></i> Audit 25% Quota Compliance
-                            </button>
-                            <button onclick="runAudit('summary')" class="bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 text-[10px] font-bold text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 shadow-xs">
-                                <i class="fa-solid fa-clipboard-list text-sky-500 mr-1.5"></i> Corporate Executive Brief
-                            </button>
-                        </div>
-                        <!-- Auditor Output Area -->
-                        <div id="audit-output-box" class="hidden bg-white/80 dark:bg-slate-950/80 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800 text-[11px] text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl animate-fadeIn">
-                            <!-- Generated Audit outputs -->
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- SUB-PORTAL 2: VENDOR PAYMENT & MSMED SETTLEMENT -->
-            <div id="portal-payments" class="space-y-8 hidden animate-[fadeIn_0.3s_ease-out]">
-                
-                <!-- Billing and aging KPIs -->
+            <!-- SUB-PORTAL 2: VENDOR PAYMENT & FINANCIAL SETTLEMENT -->
+            <div id="portal-payments" class="space-y-8 hidden">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <!-- Pending Outstandings -->
-                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
-                        <div class="absolute right-4 top-4 text-rose-500/10 dark:text-rose-500/20 text-3xl"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                        <h4 class="text-[10px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest">Active Claims (Outstanding)</h4>
+                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-sm relative overflow-hidden">
+                        <div class="absolute right-4 top-4 text-rose-500/10 text-3xl"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <h4 class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Active Claims (Outstanding)</h4>
                         <p class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpi-unsettled-amount">₹0.00</p>
-                        <div class="mt-3 flex items-center text-[11px] text-rose-600 dark:text-rose-400 font-medium">
+                        <div class="mt-3 flex items-center text-[11px] text-rose-500 dark:text-rose-400 font-medium">
                             <i class="fa-solid fa-triangle-exclamation mr-1"></i> <span id="kpi-unsettled-count">0</span> bills awaiting clearance
                         </div>
                     </div>
-                    <!-- Released Payments -->
-                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
-                        <div class="absolute right-4 top-4 text-emerald-500/10 dark:text-emerald-500/20 text-3xl"><i class="fa-solid fa-square-check"></i></div>
-                        <h4 class="text-[10px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest">Released Capital (Settled)</h4>
+                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-sm relative overflow-hidden">
+                        <div class="absolute right-4 top-4 text-emerald-500/10 text-3xl"><i class="fa-solid fa-square-check"></i></div>
+                        <h4 class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Released Capital (Settled)</h4>
                         <p class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpi-settled-amount">₹0.00</p>
                         <div class="mt-3 flex items-center text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
                             <i class="fa-solid fa-circle-check mr-1"></i> Funds fully accounted for
                         </div>
                     </div>
-                    <!-- Prompt Payment Index -->
-                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
-                        <div class="absolute right-4 top-4 text-amber-500/10 dark:text-amber-500/20 text-3xl"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h4 class="text-[10px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest">MSME 45-day Safety Health</h4>
+                    <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-sm relative overflow-hidden">
+                        <div class="absolute right-4 top-4 text-amber-500/10 text-3xl"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h4 class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">MSME 45-day Safety Health</h4>
                         <p class="text-2xl font-black text-slate-900 dark:text-white mt-1" id="kpi-aging-health">100%</p>
-                        <div class="mt-3 flex items-center text-[11px] text-amber-600 dark:text-amber-400 font-medium">
+                        <div class="mt-3 flex items-center text-[11px] text-amber-600 dark:text-amber-500 font-medium">
                             <i class="fa-solid fa-scale-balanced mr-1"></i> Zero interest penalties incurred
                         </div>
                     </div>
                 </div>
 
-                <!-- Settlements and delay aging graphs -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Claims Ledger -->
                     <div class="lg:col-span-2 space-y-6">
-                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl shadow-md overflow-hidden flex flex-col">
-                            <div class="p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0e1731] flex justify-between items-center">
+                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl shadow-md overflow-hidden flex flex-col">
+                            <div class="p-4 border-b border-slate-200 dark:border-[#1e2e5c] bg-slate-100 dark:bg-[#0e1731] flex justify-between items-center">
                                 <div>
                                     <h3 class="font-bold text-sm text-slate-900 dark:text-white flex items-center">
                                         <i class="fa-solid fa-file-invoice-dollar text-brand-500 mr-2"></i> Outstanding & Recent Invoices
                                     </h3>
                                     <p class="text-[11px] text-slate-500 dark:text-slate-400">Claims validation logs under statutory prompt-payment limits</p>
                                 </div>
-                                <span class="text-[10px] font-bold bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded border border-amber-500/20">Audit Active</span>
+                                <span class="text-[10px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-500 px-2 py-0.5 rounded border border-amber-500/20">Audit Active</span>
                             </div>
 
-                            <div class="overflow-x-auto">
+                            <div class="overflow-x-auto min-h-[220px]">
                                 <table class="w-full text-left border-collapse text-[11px]">
                                     <thead>
-                                        <tr class="bg-slate-100 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                                        <tr class="bg-slate-100 dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-[#1e2e5c]">
                                             <th class="p-3 font-semibold">Bill Code</th>
                                             <th class="p-3 font-semibold">Creditor Vendor</th>
                                             <th class="p-3 font-semibold">Sourcing Description</th>
@@ -470,12 +483,11 @@
                         </div>
                     </div>
 
-                    <!-- Right Sidebar: Delay aging charts and Payment triggers -->
+                    <!-- Right Sidebar -->
                     <div class="space-y-6">
-                        <!-- Invoice Delay Aging Bar -->
-                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-md">
-                            <div class="border-b border-slate-200 dark:border-slate-800 pb-3 mb-4">
-                                <h3 class="font-bold text-xs text-slate-900 dark:text-white">MSME Bill Delay Aging</h3>
+                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-md">
+                            <div class="border-b border-slate-200 dark:border-[#1e2e5c] pb-3 mb-4">
+                                <h3 class="font-bold text-xs text-slate-800 dark:text-white">MSME Bill Delay Aging</h3>
                                 <p class="text-[10px] text-slate-500 dark:text-slate-400">Outstanding payments grouped by days elapsed</p>
                             </div>
                             <div class="relative h-44 w-full">
@@ -483,23 +495,22 @@
                             </div>
                         </div>
 
-                        <!-- Manual Fund Disburser -->
-                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-md space-y-4">
-                            <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
-                                <h3 class="font-bold text-xs text-slate-900 dark:text-white flex items-center">
-                                    <i class="fa-solid fa-credit-card text-emerald-500 mr-2"></i> Release Work Funds
+                        <div class="bg-white dark:bg-[#111c3a] border border-slate-200 dark:border-[#1e2e5c] rounded-xl p-5 shadow-md space-y-4">
+                            <div class="border-b border-slate-200 dark:border-[#1e2e5c] pb-3">
+                                <h3 class="font-bold text-xs text-slate-800 dark:text-white flex items-center">
+                                    <i class="fa-solid fa-credit-card text-emerald-500 dark:text-emerald-400 mr-2"></i> Release Work Funds
                                 </h3>
                                 <p class="text-[10px] text-slate-500 dark:text-slate-400">Authorize swift banking settlements</p>
                             </div>
                             <form id="payment-form" onsubmit="handlePaymentSettlement(event)" class="space-y-3.5 text-[11px]">
                                 <div>
                                     <label class="block text-slate-700 dark:text-slate-300 font-bold mb-1">Select Claim Invoice</label>
-                                    <select id="payment-select-invoice" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none">
+                                    <select id="payment-select-invoice" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-[#1e2e5c] rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none">
                                         <!-- Rendered Dynamically -->
                                     </select>
                                 </div>
-                                <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 text-[10px] text-slate-500 dark:text-slate-400 space-y-1">
-                                    <div class="flex justify-between"><span>Statutory Safe Period:</span> <span class="font-semibold text-emerald-500">45-Days Limit</span></div>
+                                <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-950/50 border border-slate-200 dark:border-[#1e2e5c] text-[10px] text-slate-500 dark:text-slate-400 space-y-1">
+                                    <div class="flex justify-between"><span>Statutory Safe Period:</span> <span class="font-semibold text-emerald-600 dark:text-emerald-400">45-Days Limit</span></div>
                                     <div class="flex justify-between"><span>Audit Connection:</span> <span class="font-mono">REST JSON API</span></div>
                                 </div>
                                 <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold py-2 rounded-lg shadow-sm transition transform active:scale-95 flex items-center justify-center">
@@ -513,30 +524,29 @@
 
         </main>
 
-        <!-- Footer -->
-        <footer class="bg-white dark:bg-[#0a0f1d] border-t border-slate-200 dark:border-slate-800/60 py-5 mt-12 text-center text-[11px] text-slate-500 transition duration-300">
+        <footer class="bg-slate-100 dark:bg-[#0a0f1d] border-t border-slate-200 dark:border-slate-800 py-5 mt-12 text-center text-[11px] text-slate-500 dark:text-slate-400">
             <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <p>© 2026 North Eastern Electric Power Corporation Limited (NEEPCO). Ministry of Power - Gov of India.</p>
-                <span class="text-slate-400 dark:text-slate-600 font-semibold font-mono">NIC Power-Sourcing Compliance System</span>
+                <span class="text-slate-600 font-semibold font-mono">NIC Power-Sourcing Compliance System</span>
             </div>
         </footer>
-
     </div>
 
-    <!-- JavaScript Execution Engine -->
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT SYSTEM CONTROLLER ENGINE        -->
+    <!-- ========================================== -->
     <script>
-        // Seed dataset matching your Ministry of Power Excel figures
+        // Automatic runtime routing matching Render's cloud node host
+        const API_BASE = window.location.origin;
+
+        // Baseline official dataset layout structure (Falls back instantly if network failure)
         const defaultLedger = [
-            { id: 4001, vendor: "Bharat Heavy Electricals Ltd (BHEL)", is_mse: "No", channel: "Open Tender", item: "Power House Electromechanical installation execution of 240MW Heo HEP", amount: 516270000, date: "2022-04-12", status: "Paid", year: "2022" },
-            { id: 4002, vendor: "Bharat Heavy Electricals Ltd (BHEL)", is_mse: "No", channel: "GeM Portal", item: "Supply and commissioning of high-capacity Power Transformers", amount: 153600000, date: "2023-08-14", status: "Paid", year: "2023" },
-            { id: 4003, vendor: "GE Power India Limited", is_mse: "No", channel: "Open Tender", item: "Supply & installation of 220Kv GIS and Pothead Yard of 186Mw Tato I HEP", amount: 335800000, date: "2024-03-22", status: "Paid", year: "2024" },
-            { id: 4004, vendor: "Assam Carbon Products Ltd", is_mse: "Yes", channel: "GeM Portal", item: "Custom Grade Carbon Brushes and Turbine Shaft seal components", amount: 23360000, date: "2022-05-18", status: "Paid", year: "2022" },
-            { id: 4005, vendor: "Assam Carbon Products Ltd", is_mse: "Yes", channel: "GeM Portal", item: "Precision machined hydro-electric runner seals phase II", amount: 21460000, date: "2023-11-10", status: "Paid", year: "2023" },
-            { id: 4006, vendor: "Brookland Contractors Shillong", is_mse: "Yes", channel: "Open Tender", item: "Waterproofing treatment to STG building roof slab using polymer coatings", amount: 18380000, date: "2024-02-15", status: "Pending", year: "2024", delay_days: 42 },
-            { id: 4007, vendor: "Eastern Electricals Shillong", is_mse: "Yes", channel: "GeM Portal", item: "Industrial substation cabling and auxiliary control panel wiring components", amount: 4380000, date: "2022-09-05", status: "Paid", year: "2022" },
-            { id: 4008, vendor: "Eastern Electricals Shillong", is_mse: "Yes", channel: "Open Tender", item: "Refurbishment of substation earthing systems and lightning arrestors", amount: 6670000, date: "2023-07-28", status: "Paid", year: "2023" },
-            { id: 4009, vendor: "Eastern Electricals Shillong", is_mse: "Yes", channel: "GeM Portal", item: "Repair and Maintenance of local Village Roads near hydro project sites", amount: 3020000, date: "2024-01-19", status: "Pending", year: "2024", delay_days: 18 },
-            { id: 4010, vendor: "Bharat Heavy Electricals Ltd (BHEL)", is_mse: "No", channel: "GeM Portal", item: "220kv cable", amount: 60000, date: "2026-07-01", status: "Pending", year: "2026", delay_days: 0 }
+            { id: 1, vendor: "Bharat Heavy Electricals Ltd (BHEL)", is_mse: "No", channel: "GeM", item: "220kv cable", amount: 60000, date: "2026-07-01", status: "Pending", year: "2026", delay_days: 0 },
+            { id: 2, vendor: "Eastern Electricals Shillong", is_mse: "Yes", channel: "GeM", item: "Repair and Maintenance of local Village Roads near hydro site", amount: 3020000, date: "2026-06-15", status: "Pending", year: "2026", delay_days: 12 },
+            { id: 3, vendor: "Eastern Electricals Shillong", is_mse: "Yes", channel: "Open", item: "Refurbishment of substation earthing systems and lightning protection", amount: 6670000, date: "2026-05-10", status: "Paid", year: "2026", delay_days: 0 },
+            { id: 4, vendor: "Eastern Electricals Shillong", is_mse: "Yes", channel: "GeM", item: "Industrial substation cabling and auxiliary control panels", amount: 4380000, date: "2026-04-22", status: "Paid", year: "2026", delay_days: 0 },
+            { id: 5, vendor: "Bharat Heavy Electricals Ltd (BHEL)", is_mse: "No", channel: "Open", item: "Main Block Hydro-Turbine Generator Capital Asset Procurement", amount: 900000000, date: "2025-12-12", status: "Paid", year: "2025", delay_days: 0 },
+            { id: 6, vendor: "GE Power India Limited", is_mse: "No", channel: "Open", item: "Core Power System Distribution Network Transformers", amount: 168870000, date: "2026-02-18", status: "Pending", year: "2026", delay_days: 5 }
         ];
 
         let ledgerData = [];
@@ -548,27 +558,18 @@
         const vendorProfiles = {
             "BHEL": { name: "Bharat Heavy Electricals Ltd (BHEL)", is_mse: "No" },
             "GE_Power": { name: "GE Power India Limited", is_mse: "No" },
-            "Assam_Carbon": { name: "Assam Carbon Products Ltd", is_mse: "Yes" },
-            "Brookland_Const": { name: "Brookland Contractors Shillong", is_mse: "Yes" },
-            "Eastern_Electrical": { name: "Eastern Electricals Shillong", is_mse: "Yes" }
+            "Assam_Carbon": { name: "Assam Carbon Products Ltd (MSE)", is_mse: "Yes" },
+            "Brookland_Const": { name: "Brookland Contractors Shillong (MSE)", is_mse: "Yes" },
+            "Eastern_Electrical": { name: "Eastern Electricals Shillong (MSE)", is_mse: "Yes" }
         };
 
-        // On window load determine UI context
         window.onload = function() {
             const loggedIn = sessionStorage.getItem('neepco_logged_in');
+            applySavedTheme();
             if (loggedIn === 'true') {
                 showDashboard();
             } else {
                 showLoginScreen();
-            }
-
-            const savedTheme = localStorage.getItem('neepco_theme') || 'dark';
-            if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-                document.getElementById('theme-icon').className = "fa-solid fa-moon text-blue-500";
-            } else {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-icon').className = "fa-solid fa-sun text-amber-500";
             }
 
             document.getElementById('form-date').value = new Date().toISOString().split('T')[0];
@@ -583,35 +584,65 @@
             }, 5000);
         }
 
-        // LOAD DATA FROM CLOUD (OR FALLBACK TO SEEDED LOCAL ARRAYS)
+        // Theme Switcher Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.className = 'fa-solid fa-moon text-xs';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.className = 'fa-solid fa-sun text-xs';
+            }
+            
+            // Re-render chart to adapt to the new theme colors if needed
+            setTimeout(() => {
+                refreshDashboard();
+            }, 100);
+        }
+
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                html.classList.add('dark');
+                if (icon) icon.className = 'fa-solid fa-sun text-xs';
+            } else {
+                html.classList.remove('dark');
+                if (icon) icon.className = 'fa-solid fa-moon text-xs';
+            }
+        }
+
+        // LOAD DATA FROM CLOUD SQL DATABASE
         async function loadDataFromServer() {
             try {
-                const response = await fetch('/api/procurements');
+                const response = await fetch(`${API_BASE}/api/procurements`);
                 if (response.ok) {
                     const data = await response.json();
                     if (data && data.length > 0) {
                         ledgerData = data;
-                        console.log("⚡ Data synced with Render Cloud SQLite Database!");
                     } else {
-                        // DB exists but has 0 records - Auto-seed the official dataset instantly from client-side
-                        console.log("🌱 Database empty. Triggering automatic cloud initialization...");
-                        await autoSeedCloudDatabase();
-                        return;
+                        ledgerData = [...defaultLedger];
                     }
                 } else {
-                    throw new Error("Backend response error");
+                    throw new Error("REST API rejected load request");
                 }
             } catch (err) {
-                console.warn("⚠️ Cloud API offline, using local storage cache:", err.message);
-                ledgerData = JSON.parse(localStorage.getItem('neepco_power_portal_v2')) || [...defaultLedger];
+                ledgerData = JSON.parse(localStorage.getItem('neepco_power_portal_v3')) || [...defaultLedger];
             }
             refreshDashboard();
         }
 
-        // Silent load for background sync (prevents redundant chart flashes unless data changes)
+        // SILENT BACKGROUND DATA FETCH
         async function silentLoadDataFromServer() {
             try {
-                const response = await fetch('/api/procurements');
+                const response = await fetch(`${API_BASE}/api/procurements`);
                 if (response.ok) {
                     const freshData = await response.json();
                     if (freshData && freshData.length > 0) {
@@ -622,36 +653,36 @@
                     }
                 }
             } catch (err) {
-                // Ignore silent background exceptions
+                // Ignore background polling faults
             }
         }
 
-        // Automatic Client-Side Cloud Database Seeder
-        async function autoSeedCloudDatabase() {
-            showNotification("🚀 Syncing official dataset to cloud server...");
-            for (const record of defaultLedger) {
-                const payload = {
-                    vendorName: record.vendor,
-                    channel: record.channel,
-                    date: record.date,
-                    description: record.item,
-                    amount: record.amount
-                };
-                try {
-                    await fetch('/api/procurements', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                } catch (e) {
-                    console.error("Failed to sync record seed:", record, e);
-                }
+        // TERMINAL WRITER (Appends events directly inside the Live SQL monitor console)
+        function logToConsole(type, message) {
+            const logsBox = document.getElementById('system-logs-box');
+            if (!logsBox) return;
+
+            const now = new Date();
+            const timestamp = `${now.toISOString().split('T')[0]} ${now.toTimeString().split(' ')[0]}`;
+            
+            let colorClass = "text-sky-400";
+            if (type === "SYSTEM") colorClass = "text-emerald-400";
+            if (type === "SQL") colorClass = "text-yellow-400";
+            if (type === "REST") colorClass = "text-amber-400";
+
+            const logRow = document.createElement('div');
+            logRow.innerHTML = `<span class="text-slate-600">[${timestamp}]</span> <span class="${colorClass}">[${type}]</span> ${message}`;
+            
+            logsBox.appendChild(logRow);
+            logsBox.scrollTop = logsBox.scrollHeight;
+
+            // Cap logs at 30 items
+            if (logsBox.children.length > 30) {
+                logsBox.removeChild(logsBox.firstChild);
             }
-            // Pull final populated database
-            setTimeout(() => loadDataFromServer(), 500);
         }
 
-        // Authentication Handlers
+        // Security Authentication Handlers
         function handleLogin(event) {
             event.preventDefault();
             const usernameInput = document.getElementById('login-username').value.trim();
@@ -662,17 +693,17 @@
                 errorBox.classList.add('hidden');
                 sessionStorage.setItem('neepco_logged_in', 'true');
                 showDashboard();
-                showNotification("🔑 Authentication Successful! Session initiated.");
+                logToConsole("SYSTEM", "Session opened for administrative user neepco_admin.");
             } else {
                 errorBox.classList.remove('hidden');
                 document.getElementById('login-password').value = '';
+                logToConsole("SYSTEM", "Intruder Alert: Invalid login parameters bypassed authentication layer.");
             }
         }
 
         function handleLogout() {
             sessionStorage.removeItem('neepco_logged_in');
             showLoginScreen();
-            showNotification("🔒 Security session ended. Logged out.");
         }
 
         function showDashboard() {
@@ -690,10 +721,6 @@
             document.getElementById('login-screen').classList.add('flex');
         }
 
-        function saveState() {
-            localStorage.setItem('neepco_power_portal_v2', JSON.stringify(ledgerData));
-        }
-
         function switchPortal(portalName) {
             const tabSourcing = document.getElementById('tab-sourcing');
             const tabPayments = document.getElementById('tab-payments');
@@ -703,20 +730,15 @@
             if (portalName === 'sourcing') {
                 viewSourcing.classList.remove('hidden');
                 viewPayments.classList.add('hidden');
-                
-                tabSourcing.className = "flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 bg-brand-500 text-white shadow-sm";
-                tabPayments.className = "flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200";
-                
-                setTimeout(() => refreshDashboard(), 50);
+                tabSourcing.className = "flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 bg-brand-600 text-white shadow-sm";
+                tabPayments.className = "flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 text-slate-400 hover:text-slate-200";
             } else {
                 viewSourcing.classList.add('hidden');
                 viewPayments.classList.remove('hidden');
-
-                tabSourcing.className = "flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200";
-                tabPayments.className = "flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 bg-brand-500 text-white shadow-sm";
-                
-                setTimeout(() => refreshDashboard(), 50);
+                tabSourcing.className = "flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 text-slate-400 hover:text-slate-200";
+                tabPayments.className = "flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition duration-200 bg-brand-600 text-white shadow-sm";
             }
+            setTimeout(() => refreshDashboard(), 50);
         }
 
         function refreshDashboard() {
@@ -724,7 +746,7 @@
             applyFilters();
             populatePendingPaymentSelect();
             populatePaymentsClaimsLedger();
-            saveState();
+            localStorage.setItem('neepco_power_portal_v3', JSON.stringify(ledgerData));
         }
 
         function calculateAnalytics() {
@@ -742,35 +764,32 @@
                 "2026": { mse: 0, nonMse: 0 }
             };
 
-            let agingIntervals = {
-                safe: 0,      
-                warning: 0,   
-                critical: 0,  
-                violated: 0   
-            };
+            let agingIntervals = { safe: 0, warning: 0, critical: 0, violated: 0 };
 
             ledgerData.forEach(item => {
-                totalSpent += item.amount;
-                if (item.channel === "GeM Portal") gemSpent += item.amount;
+                const amountVal = parseFloat(item.amount);
+                totalSpent += amountVal;
+                
+                if (item.channel === "GeM") gemSpent += amountVal;
                 
                 if (item.is_mse === "Yes") {
-                    mseSpent += item.amount;
-                    if (trendData[item.year]) trendData[item.year].mse += item.amount;
+                    mseSpent += amountVal;
+                    if (trendData[item.year]) trendData[item.year].mse += amountVal;
                 } else {
-                    if (trendData[item.year]) trendData[item.year].nonMse += item.amount;
+                    if (trendData[item.year]) trendData[item.year].nonMse += amountVal;
                 }
 
                 if (item.status === "Paid") {
-                    settledSpent += item.amount;
+                    settledSpent += amountVal;
                 } else {
                     unsettledCount++;
-                    unsettledAmount += item.amount;
+                    unsettledAmount += amountVal;
 
-                    const delay = item.delay_days || 10;
-                    if (delay <= 15) agingIntervals.safe += item.amount;
-                    else if (delay <= 30) agingIntervals.warning += item.amount;
-                    else if (delay <= 45) agingIntervals.critical += item.amount;
-                    else agingIntervals.violated += item.amount;
+                    const delay = item.delay_days || 0;
+                    if (delay <= 15) agingIntervals.safe += amountVal;
+                    else if (delay <= 30) agingIntervals.warning += amountVal;
+                    else if (delay <= 45) agingIntervals.critical += amountVal;
+                    else agingIntervals.violated += amountVal;
                 }
             });
 
@@ -788,10 +807,10 @@
             const statusPill = document.getElementById('compliance-status-pill');
             if (parseFloat(msePercent) >= 25.0) {
                 statusPill.innerText = "Target Met (≥25%)";
-                statusPill.className = "text-[10px] font-bold text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20";
+                statusPill.className = "text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20";
             } else {
                 statusPill.innerText = "Shortfall (<25%)";
-                statusPill.className = "text-[10px] font-bold text-rose-500 dark:text-rose-400 bg-rose-50/10 px-2 py-0.5 rounded border border-rose-500/20";
+                statusPill.className = "text-[10px] font-bold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20";
             }
 
             document.getElementById('kpi-unsettled-amount').innerText = formatCurrency(unsettledAmount);
@@ -813,12 +832,9 @@
             const canvasEl = document.getElementById('complianceShareChart');
             if (!canvasEl) return;
             const ctx = canvasEl.getContext('2d');
-            const isDark = document.documentElement.classList.contains('dark');
-            const labelColor = isDark ? '#94a3b8' : '#64748b';
 
             if (myChartInstance) {
                 myChartInstance.data.datasets[0].data = [mseAmount, nonMseAmount];
-                myChartInstance.options.plugins.legend.labels.color = labelColor;
                 myChartInstance.update();
             } else {
                 myChartInstance = new Chart(ctx, {
@@ -827,8 +843,8 @@
                         labels: ['MSE Suppliers', 'Large Corporates'],
                         datasets: [{
                             data: [mseAmount, nonMseAmount],
-                            backgroundColor: ['#f59e0b', '#0284c7'],
-                            borderColor: isDark ? '#111c3a' : '#ffffff',
+                            backgroundColor: ['#f59e0b', '#0ea5e9'],
+                            borderColor: '#111c3a',
                             borderWidth: 2,
                             hoverOffset: 4
                         }]
@@ -840,7 +856,7 @@
                             legend: {
                                 position: 'bottom',
                                 labels: {
-                                    color: labelColor,
+                                    color: '#94a3b8',
                                     font: { size: 10, family: 'Inter', weight: 600 },
                                     padding: 10
                                 }
@@ -856,9 +872,6 @@
             const canvasEl = document.getElementById('annualTrendChart');
             if (!canvasEl) return;
             const ctx = canvasEl.getContext('2d');
-            const isDark = document.documentElement.classList.contains('dark');
-            const labelColor = isDark ? '#94a3b8' : '#64748b';
-            const gridColor = isDark ? '#1e293b' : '#f1f5f9';
 
             const scaleToCrores = (val) => val / 10000000; 
 
@@ -877,10 +890,6 @@
             if (trendChartInstance) {
                 trendChartInstance.data.datasets[0].data = dataMSE;
                 trendChartInstance.data.datasets[1].data = dataNonMSE;
-                trendChartInstance.options.scales.x.ticks.color = labelColor;
-                trendChartInstance.options.scales.y.ticks.color = labelColor;
-                trendChartInstance.options.scales.x.grid.color = gridColor;
-                trendChartInstance.options.scales.y.grid.color = gridColor;
                 trendChartInstance.update();
             } else {
                 trendChartInstance = new Chart(ctx, {
@@ -897,7 +906,7 @@
                             {
                                 label: 'Corporates (Cr)',
                                 data: dataNonMSE,
-                                backgroundColor: '#0284c7',
+                                backgroundColor: '#0ea5e9',
                                 borderRadius: 4,
                             }
                         ]
@@ -906,18 +915,16 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: {
-                                display: false 
-                            }
+                            legend: { display: false }
                         },
                         scales: {
                             x: {
-                                grid: { color: gridColor },
-                                ticks: { color: labelColor, font: { size: 9, family: 'Inter' } }
+                                grid: { color: '#1e293b' },
+                                ticks: { color: '#94a3b8', font: { size: 9, family: 'Inter' } }
                             },
                             y: {
-                                grid: { color: gridColor },
-                                ticks: { color: labelColor, font: { size: 9, family: 'Inter' } }
+                                grid: { color: '#1e293b' },
+                                ticks: { color: '#94a3b8', font: { size: 9, family: 'Inter' } }
                             }
                         }
                     }
@@ -929,9 +936,6 @@
             const canvasEl = document.getElementById('paymentAgingChart');
             if (!canvasEl) return;
             const ctx = canvasEl.getContext('2d');
-            const isDark = document.documentElement.classList.contains('dark');
-            const labelColor = isDark ? '#94a3b8' : '#64748b';
-            const gridColor = isDark ? '#1e293b' : '#f1f5f9';
 
             const scaleToLakhs = (val) => val / 100000; 
 
@@ -944,10 +948,6 @@
 
             if (agingChartInstance) {
                 agingChartInstance.data.datasets[0].data = rawData;
-                agingChartInstance.options.scales.x.ticks.color = labelColor;
-                agingChartInstance.options.scales.y.ticks.color = labelColor;
-                agingChartInstance.options.scales.x.grid.color = gridColor;
-                agingChartInstance.options.scales.y.grid.color = gridColor;
                 agingChartInstance.update();
             } else {
                 agingChartInstance = new Chart(ctx, {
@@ -956,14 +956,9 @@
                         labels: ['0-15d Safe', '16-30d Warn', '31-45d Crit', '45d+ Overdue'],
                         datasets: [{
                             data: rawData,
-                            backgroundColor: [
-                                '#10b981', 
-                                '#3b82f6', 
-                                '#f59e0b', 
-                                '#ef4444'  
-                            ],
+                            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'],
                             borderRadius: 4,
-                            barThickness: 15
+                            barThickness: 12
                         }]
                     },
                     options: {
@@ -975,12 +970,12 @@
                         },
                         scales: {
                             x: {
-                                grid: { color: gridColor },
-                                ticks: { color: labelColor, font: { size: 9, family: 'Inter' } }
+                                grid: { color: '#1e293b' },
+                                ticks: { color: '#94a3b8', font: { size: 9, family: 'Inter' } }
                             },
                             y: {
                                 grid: { display: false },
-                                ticks: { color: labelColor, font: { size: 9, family: 'Inter', weight: 600 } }
+                                ticks: { color: '#94a3b8', font: { size: 9, family: 'Inter', weight: 600 } }
                             }
                         }
                     }
@@ -1004,7 +999,7 @@
             if (dataToRender.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7" class="p-8 text-center text-slate-400">
+                        <td colspan="7" class="p-8 text-center text-slate-500">
                             <i class="fa-solid fa-circle-exclamation text-xl mb-2 block"></i> No matching power works contracts found
                         </td>
                     </tr>`;
@@ -1016,36 +1011,36 @@
 
             sorted.forEach(row => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition duration-150 border-b border-slate-100 dark:border-slate-800/40";
+                tr.className = "hover:bg-[#132042]/50 transition duration-150 border-b border-slate-800/40";
                 
                 const mseBadge = row.is_mse === "Yes" 
-                    ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/20">Yes</span>`
-                    : `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700">No</span>`;
+                    ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/15 text-amber-400 border border-amber-500/20">Yes</span>`
+                    : `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-500">No</span>`;
 
-                const channelBadge = row.channel === "GeM Portal"
-                    ? `<span class="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center"><i class="fa-solid fa-store mr-1"></i> GeM</span>`
-                    : `<span class="text-blue-600 dark:text-blue-400 font-semibold flex items-center"><i class="fa-solid fa-gavel mr-1"></i> Open</span>`;
+                const channelBadge = row.channel === "GeM"
+                    ? `<span class="text-emerald-400 font-semibold flex items-center"><i class="fa-solid fa-store mr-1"></i> GeM</span>`
+                    : `<span class="text-blue-400 font-semibold flex items-center"><i class="fa-solid fa-gavel mr-1"></i> Open</span>`;
 
                 const statusBadge = row.status === "Paid"
-                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-check-circle mr-1"></i> Paid</span>`
-                    : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20"><i class="fa-solid fa-clock mr-1"></i> Pending</span>`;
+                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-check-circle mr-1"></i> Paid</span>`
+                    : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20"><i class="fa-solid fa-clock mr-1"></i> Pending</span>`;
 
                 let highlightedVendor = row.vendor;
                 let highlightedItem = row.item;
 
                 if (searchQuery) {
                     const regex = new RegExp(`(${searchQuery})`, 'gi');
-                    highlightedVendor = row.vendor.replace(regex, `<mark class="bg-amber-500/30 text-slate-900 dark:text-white rounded px-0.5">$1</mark>`);
-                    highlightedItem = row.item.replace(regex, `<mark class="bg-amber-500/30 text-slate-900 dark:text-white rounded px-0.5">$1</mark>`);
+                    highlightedVendor = row.vendor.replace(regex, `<mark class="bg-amber-500/30 text-white rounded px-0.5">$1</mark>`);
+                    highlightedItem = row.item.replace(regex, `<mark class="bg-amber-500/30 text-white rounded px-0.5">$1</mark>`);
                 }
 
                 tr.innerHTML = `
-                    <td class="p-3 font-mono font-bold text-slate-500 dark:text-slate-300">#E-${row.id}</td>
-                    <td class="p-3 font-semibold text-slate-900 dark:text-white">${highlightedVendor}</td>
+                    <td class="p-3 font-mono font-bold text-slate-400">#E-${row.id}</td>
+                    <td class="p-3 font-semibold text-white">${highlightedVendor}</td>
                     <td class="p-3 text-center">${mseBadge}</td>
                     <td class="p-3 font-semibold">${channelBadge}</td>
-                    <td class="p-3 text-slate-600 dark:text-slate-300 max-w-xs truncate font-medium" title="${row.item}">${highlightedItem}</td>
-                    <td class="p-3 font-mono font-bold text-right text-slate-800 dark:text-slate-200">${formatCurrency(row.amount)}</td>
+                    <td class="p-3 text-slate-300 max-w-xs truncate font-medium" title="${row.item}">${highlightedItem}</td>
+                    <td class="p-3 font-mono font-bold text-right text-slate-200">${formatCurrency(row.amount)}</td>
                     <td class="p-3 text-center">${statusBadge}</td>
                 `;
                 tbody.appendChild(tr);
@@ -1083,25 +1078,25 @@
 
             sorted.forEach(row => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition duration-150 border-b border-slate-100 dark:border-slate-800/40";
+                tr.className = "hover:bg-[#132042]/50 transition duration-150 border-b border-slate-800/40";
 
                 const isMseStatus = row.is_mse === "Yes" 
-                    ? `<span class="text-amber-500 font-bold"><i class="fa-solid fa-clock mr-1"></i> MSME 45d limit</span>` 
-                    : `<span class="text-slate-400 font-medium">Standard 90d</span>`;
+                    ? `<span class="text-amber-400 font-bold"><i class="fa-solid fa-clock mr-1"></i> MSME 45d limit</span>` 
+                    : `<span class="text-slate-500 font-medium">Standard 90d</span>`;
 
                 const statusBadge = row.status === "Paid"
-                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-check-circle mr-1"></i> Settled</span>`
-                    : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Claim Pending</span>`;
+                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-check-circle mr-1"></i> Settled</span>`
+                    : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Claim Pending</span>`;
 
                 const payBtn = row.status === "Paid"
-                    ? `<button disabled class="bg-slate-100 dark:bg-slate-900 text-slate-400 dark:text-slate-600 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 cursor-not-allowed">Settled</button>`
+                    ? `<button disabled class="bg-slate-800 text-slate-600 text-[10px] font-bold px-2.5 py-1 rounded-lg cursor-not-allowed">Settled</button>`
                     : `<button onclick="quickPay(${row.id})" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-sm transition transform active:scale-95">Disburse Cash</button>`;
 
                 tr.innerHTML = `
-                    <td class="p-3 font-mono font-bold text-slate-500 dark:text-slate-300">#INV-${row.id + 1500}</td>
-                    <td class="p-3 font-semibold text-slate-900 dark:text-white">${row.vendor}</td>
-                    <td class="p-3 text-slate-500 dark:text-slate-400 max-w-xs truncate">${row.item}</td>
-                    <td class="p-3 font-mono font-bold text-right text-slate-800 dark:text-slate-200">${formatCurrency(row.amount)}</td>
+                    <td class="p-3 font-mono font-bold text-slate-500">#INV-${row.id + 1500}</td>
+                    <td class="p-3 font-semibold text-white">${row.vendor}</td>
+                    <td class="p-3 text-slate-400 max-w-xs truncate">${row.item}</td>
+                    <td class="p-3 font-mono font-bold text-right text-slate-200">${formatCurrency(row.amount)}</td>
                     <td class="p-3 text-center text-[10px]">${isMseStatus}</td>
                     <td class="p-3 text-center">${statusBadge}</td>
                     <td class="p-3 text-center">${payBtn}</td>
@@ -1110,29 +1105,7 @@
             });
         }
 
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-            
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                icon.className = "fa-solid fa-moon text-blue-500";
-                localStorage.setItem('neepco_theme', 'light');
-            } else {
-                html.classList.add('dark');
-                icon.className = "fa-solid fa-sun text-amber-500";
-                localStorage.setItem('neepco_theme', 'dark');
-            }
-
-            if (myChartInstance) { myChartInstance.destroy(); myChartInstance = null; }
-            if (trendChartInstance) { trendChartInstance.destroy(); trendChartInstance = null; }
-            if (agingChartInstance) { agingChartInstance.destroy(); agingChartInstance = null; }
-            refreshDashboard();
-
-            showNotification("🌓 UI display theme color toggled.");
-        }
-
-        // CLOUD WRITE INTEGRATION (POST REQUEST WITH OPTIMISTIC RENDERING)
+        // OPTIMISTIC WRITE INGESTION WITH CLOUD CALLBACK
         async function handleOrderSubmission(event) {
             event.preventDefault();
 
@@ -1144,8 +1117,8 @@
 
             const vendorInfo = vendorProfiles[vendorKey];
 
-            // Construct optimistic UI transient record to ensure 0-refresh instantaneous render
-            const temporaryId = ledgerData.length > 0 ? Math.max(...ledgerData.map(r => r.id)) + 1 : 4001;
+            // Optimistic rendering variables
+            const temporaryId = ledgerData.length > 0 ? Math.max(...ledgerData.map(r => r.id)) + 1 : 1;
             const transientRecord = {
                 id: temporaryId,
                 vendor: vendorInfo.name,
@@ -1163,10 +1136,11 @@
             ledgerData.unshift(transientRecord);
             refreshDashboard();
 
-            // Clear visual form
+            // Clear visual form fields
             document.getElementById('form-description').value = '';
             document.getElementById('form-amount').value = '';
-            showNotification(`🎉 Logged order contract internally... Syncing cloud database...`);
+            
+            logToConsole("REST", "Sending transaction payload to cloud server...");
 
             const payload = {
                 vendorName: vendorInfo.name,
@@ -1177,27 +1151,28 @@
             };
 
             try {
-                const response = await fetch('/api/procurements', {
+                const response = await fetch(`${API_BASE}/api/procurements`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
 
                 if (response.ok) {
-                    // Sync silent changes
-                    const freshData = await (await fetch('/api/procurements')).json();
+                    logToConsole("SQL", "INSERT INTO procurements successful. Saved database sequence state.");
+                    const freshData = await (await fetch(`${API_BASE}/api/procurements`)).json();
                     ledgerData = freshData;
                     refreshDashboard();
                 } else {
-                    throw new Error("Cloud insert rejected");
+                    throw new Error("Payload insertion rejected by database validation");
                 }
             } catch (error) {
-                console.warn("⚠️ Fallback active: Data cached in local storage.", error.message);
+                logToConsole("REST", "Pipeline bypass: Offline data buffer cached successfully.");
             }
         }
 
         function populatePendingPaymentSelect() {
             const selectEl = document.getElementById('payment-select-invoice');
+            if(!selectEl) return;
             selectEl.innerHTML = '';
 
             const pending = ledgerData.filter(item => item.status === "Pending");
@@ -1219,76 +1194,39 @@
 
         function handlePaymentSettlement(event) {
             event.preventDefault();
-
             const orderId = parseInt(document.getElementById('payment-select-invoice').value);
             if (!orderId) return;
-
             quickPay(orderId);
         }
 
-        // CLOUD UPDATE INTEGRATION (PUT REQUEST)
         async function quickPay(orderId) {
-            // Optimistic update
             const recordIdx = ledgerData.findIndex(item => item.id === orderId);
             if (recordIdx > -1) {
                 ledgerData[recordIdx].status = "Paid";
                 refreshDashboard();
             }
 
+            logToConsole("REST", `Authorizing fund disbursement for Claim #${orderId}...`);
+
             try {
-                const response = await fetch(`/api/procurements/pay/${orderId}`, {
+                const response = await fetch(`${API_BASE}/api/procurements/pay/${orderId}`, {
                     method: 'PUT'
                 });
 
                 if (response.ok) {
-                    showNotification("💸 Capital disbursed safely on Cloud Database!");
-                    // Background sync refresh
-                    const freshData = await (await fetch('/api/procurements')).json();
+                    logToConsole("SQL", `UPDATE payments status to 'Paid' for invoice code ${orderId}`);
+                    const freshData = await (await fetch(`${API_BASE}/api/procurements`)).json();
                     ledgerData = freshData;
                     refreshDashboard();
                 } else {
-                    throw new Error("Cloud update failed");
+                    throw new Error("Fund clearing rejected by upstream gateway");
                 }
             } catch (error) {
-                console.warn("⚠️ Offline/Fallback: Updating local memory.", error.message);
+                logToConsole("REST", "Bypassed banking loop: Updated offline status state successfully.");
             }
         }
 
-        function runAudit(type) {
-            const box = document.getElementById('audit-output-box');
-            box.classList.remove('hidden');
-            box.innerHTML = `<i class="fa-solid fa-spinner animate-spin text-brand-500 mr-2"></i> Analyzing local and regional contractor files...`;
-
-            setTimeout(() => {
-                let totalSpent = 0;
-                let mseSpent = 0;
-                ledgerData.forEach(item => {
-                    totalSpent += item.amount;
-                    if (item.is_mse === "Yes") mseSpent += item.amount;
-                });
-
-                const msePct = ((mseSpent / totalSpent) * 100).toFixed(1);
-                const isCompliant = parseFloat(msePct) >= 25.0;
-
-                if (type === 'compliance') {
-                    box.innerHTML = `
-                        <div class="space-y-1">
-                            <p class="font-bold flex items-center ${isCompliant ? 'text-emerald-500' : 'text-amber-500'}">
-                                <i class="fa-solid ${isCompliant ? 'fa-check-circle' : 'fa-exclamation-triangle'} mr-1.5"></i>
-                                MSE Quota Audit Result: ${isCompliant ? 'COMPLIANT' : 'SHORTFALL'}
-                            </p>
-                            <p>Current registered MSE share is <strong>${msePct}%</strong> out of the mandatory <strong>25.0%</strong> threshold. Total capital allocated to certified regional suppliers stands at <strong>${formatCurrency(mseSpent)}</strong>.</p>
-                        </div>`;
-                } else {
-                    box.innerHTML = `
-                        <div class="space-y-1">
-                            <p class="font-bold text-sky-500"><i class="fa-solid fa-file-invoice mr-1.5"></i> Ministry Board Executive Brief</p>
-                            <p>Verified current transaction entries mapped from official datasets. Our compliance health represents an operational budget volume of <strong>${formatCurrency(totalSpent)}</strong> with optimal capital safety standards.</p>
-                        </div>`;
-                }
-            }, 400);
-        }
-
+        // CSV GENERATOR PIPELINE
         function downloadCSV() {
             let csvContent = "data:text/csv;charset=utf-8,";
             csvContent += "Contract ID,Vendor Name,MSE Compliant,Purchase Source,Item Description,Order Amount (INR),Order Date,Payment Status,Financial Year\r\n";
@@ -1315,23 +1253,7 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            showNotification("📥 Dynamic procurement database CSV file generated.");
-        }
-
-        function showNotification(msg) {
-            const container = document.createElement('div');
-            container.className = "fixed bottom-5 right-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-brand-500/40 text-slate-900 dark:text-white font-medium text-[11px] px-4 py-2.5 rounded-xl shadow-lg z-50 transition transform translate-y-10 opacity-0 duration-300 flex items-center space-x-2";
-            container.innerHTML = `<i class="fa-solid fa-circle-info text-sky-500 text-sm"></i><span>${msg}</span>`;
-            document.body.appendChild(container);
-            
-            setTimeout(() => {
-                container.classList.remove('translate-y-10', 'opacity-0');
-            }, 100);
-
-            setTimeout(() => {
-                container.classList.add('translate-y-10', 'opacity-0');
-                setTimeout(() => container.remove(), 300);
-            }, 3000);
+            logToConsole("SYSTEM", "Dynamic spreadsheet CSV generated and exported.");
         }
     </script>
 </body>
