@@ -40,6 +40,7 @@ const dbAll = (query, params = []) => new Promise((res, rej) => db.all(query, pa
 const dbGet = (query, params = []) => new Promise((res, rej) => db.get(query, params, (err, row) => { if(err) rej(err); else res(row); }));
 
 // Database initialization & automated seeding
+// Database initialization & automated seeding with YOUR specific dataset
 async function initializeDatabase() {
     try {
         await dbRun(`CREATE TABLE IF NOT EXISTS vendors (
@@ -61,6 +62,7 @@ async function initializeDatabase() {
             FOREIGN KEY (vendor_id) REFERENCES vendors(vendor_id)
         );`);
 
+        // 1. Core Vendors Setup
         const vendorCheck = await dbGet('SELECT COUNT(*) as count FROM vendors');
         if (vendorCheck.count === 0) {
             const seedVendors = [
@@ -73,8 +75,27 @@ async function initializeDatabase() {
             for (const vendor of seedVendors) {
                 await dbRun('INSERT INTO vendors (vendor_name, is_mse) VALUES (?, ?)', vendor);
             }
-            console.log('🎉 Seed configurations active.');
+            console.log('🎉 Primary Vendors synchronized.');
         }
+
+        // 2. Your Exact Dynamic Dataset Injection
+        const orderCheck = await dbGet('SELECT COUNT(*) as count FROM procurements');
+        if (orderCheck.count === 0) {
+            const yourDataset = [
+                [1, 'GeM portal', 'Turbine Maintenance Spares', 4500000, '2026-04-12', 'Paid', 0, '2026'],
+                [2, 'GeM portal', 'High-Voltage Switchgear Units', 8500000, '2026-05-20', 'Pending', 15, '2026'],
+                [3, 'Open Tender', 'Hydro-generator Stator Coils', 12000000, '2025-11-05', 'Paid', 0, '2025'],
+                [4, 'GeM portal', 'Control Room Optical Cabling', 1800000, '2026-02-10', 'Pending', 45, '2026'],
+                [5, 'Limited Tender', 'Substation Transformer Oil', 3200000, '2026-06-01', 'Pending', 5, '2026']
+            ];
+            for (const order of yourDataset) {
+                await dbRun(`INSERT INTO procurements 
+                    (vendor_id, purchase_source, item_description, order_amount, order_date, payment_status, delay_days, fiscal_year) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, order);
+            }
+            console.log('📊 Your official dataset synced successfully!');
+        }
+        
         console.log('✅ All application structures synced successfully.');
     } catch (err) {
         console.error('❌ Initialization error:', err.message);
